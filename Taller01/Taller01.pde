@@ -72,18 +72,18 @@ void setup() {
   } 
 }
 
-int selectionStartX, selectionEndX;
+int selectionStartX, selectionStartY, selectionEndX, selectionEndY;
 
 void mousePressed() {
   selectionStartX = mouseX;
+  selectionStartY = mouseY;
 }
 
 
 void updateImage(PImage canvas, int x1, int x2, int hist[], boolean luma) {
   int inter1 = max(x1, selectionStartX), inter2 = min(x2, selectionEndX);
   if (inter1 > inter2) {
-    inter1 = x1;
-    inter2 = x2;
+    return;
   }
   int which1 = int(map(inter1,  x1, x2, 0, 255));
   int which2 = int(map(inter2,  x1, x2, 0, 255));
@@ -131,7 +131,11 @@ void updateImage(PImage canvas, int x1, int x2, int hist[], boolean luma) {
  
 void mouseReleased() {
   selectionEndX = mouseX;
-  
+  selectionEndY = mouseY;
+  if (selectionStartY <= sz || selectionEndY <= sz) {
+    println(selectionStartY +" "+ selectionEndY);
+    return;
+  }
   // XOR Swap Algorithm
   if (selectionEndX < selectionStartX) {
     selectionStartX ^= selectionEndX;
