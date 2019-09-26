@@ -65,29 +65,39 @@ void setup() {
   avgw1 = lumaw1 = 0;
   avgw2 = lumaw2 = 255;
 
-  drawHist(imgAvg, sz+padding, avgw1, avgw2);
-  drawHist(imgLuma, (sz+padding)*2, lumaw1, lumaw2);
+  drawHist(imgAvg, sz+padding, avgw1, avgw2, false);
+  drawHist(imgLuma, (sz+padding)*2, lumaw1, lumaw2, true);
 }
 
 
-int[] getHist(PImage img) {
+int[] getHist(PImage img, boolean luma) {
   int hist[] = new int[256];
   img.loadPixels();
   for (int x = 0; x < img.width; ++x) {
     for (int y = 0; y < img.height; ++y) {
       int loc = x + y * img.width;
-      int val = int(brightness(img.pixels[loc]));
-      ++hist[val];
+      
+      float r = red(img.pixels[loc]);
+      float g = green(img.pixels[loc]);
+      float b = blue(img.pixels[loc]);
+
+      float val;
+      if (luma) {
+        val = r * 0.2126 + g * 0.7152 + b * 0.0722;
+      } else {
+        val = (r + g + b) / 3;
+      }
+      ++hist[int(val)];
     }
   }
   for (int i = 0; i < 256; ++i) {
-    println(hist[i]);
+    println(i +" " + hist[i]);
   }
   return hist;
 }
 
-void drawHist(PImage img, int X, int which1, int which2) {
-  int hist[] = getHist(img);
+void drawHist(PImage img, int X, int which1, int which2, boolean luma) {
+  int hist[] = getHist(img, luma);
   int histMax = max(hist);
   stroke(0);
   for (int i = 0; i < sz; ++i)
@@ -99,7 +109,7 @@ void drawHist(PImage img, int X, int which1, int which2) {
     // Convert the histogram value to a location between 
     // the bottom and the top of the picture
     int y = int(map(hist[which], 0, histMax, img.height, 0));
-    println("i:" + i + " " +y);
+    //println("i:" + i + " " +y);
     if (y == 0) {
       println(which + "wryyy");
       println(hist[which]);
@@ -117,15 +127,24 @@ int selectionStartX, selectionStartY, selectionEndX, selectionEndY;
 int selectionClickX;
 int selectionClickY;
 
-void drawInterval(PImage img, int posX, int which1, int which2) {
+void drawInterval(PImage img, int posX, int which1, int which2, boolean luma) {
   img.loadPixels();
   PImage canvas = createImage(img.width, img.height, RGB);
   canvas.loadPixels();
   for (int x = 0; x < img.width; ++x) {
     for (int y = 0; y < img.height; ++y) {
       int loc = x + y * img.width;
-      int value = int(brightness(img.pixels[loc]));
-      if (which1 <= value && value <= which2) {
+      float r = red(img.pixels[loc]);
+      float g = green(img.pixels[loc]);
+      float b = blue(img.pixels[loc]);
+
+      float val;
+      if (luma) {
+        val = r * 0.2126 + g * 0.7152 + b * 0.0722;
+      } else {
+        val = (r + g + b) / 3;
+      }
+      if (which1 <= val && val <= which2) {
         canvas.pixels[loc] = img.pixels[loc];
       } else {
         canvas.pixels[loc] = 0;
@@ -190,8 +209,7 @@ void mouseClicked() {
         mouseCount1 = 0;
         imgCanvas = img;
       }
-      drawInterval(imgCanvas, 0, 0, 255);
-      drawHist(imgCanvas, 0, 0, 255);
+      image(imgCanvas, 0, 0);  
     }
 
     if ((selectionClickX > sz && selectionClickX < (sz+padding) * 2)) {
@@ -212,8 +230,8 @@ void mouseClicked() {
         mouseCount2 = 0;
         avgCanvas = imgAvg;
       }
-      drawInterval(avgCanvas, sz+padding, avgw1, avgw2);
-      drawHist(avgCanvas, sz+padding, avgw1, avgw2);
+      drawInterval(avgCanvas, sz+padding, avgw1, avgw2, false);
+      drawHist(avgCanvas, sz+padding, avgw1, avgw2, false);
     } 
 
     if ((selectionClickX > (sz+padding) * 2 && selectionClickX < sz + (sz+padding) * 2)) {
@@ -234,8 +252,8 @@ void mouseClicked() {
         mouseCount3 = 0;   // don't match the switch parameter
         lumaCanvas = imgLuma;
       }
-      drawInterval(lumaCanvas, (sz+padding) * 2, lumaw1, lumaw2);
-      drawHist(lumaCanvas, (sz+padding) * 2, lumaw1, lumaw2);
+      drawInterval(lumaCanvas, (sz+padding) * 2, lumaw1, lumaw2, true);
+      drawHist(lumaCanvas, (sz+padding) * 2, lumaw1, lumaw2, true);
     }
   }
 }
@@ -247,8 +265,8 @@ void updateImage(PImage canvas, int x1, int x2, boolean luma) {
   }
   int which1 = int(map(inter1, x1, x2, 0, 255));
   int which2 = int(map(inter2, x1, x2, 0, 255));
-  drawInterval(canvas, x1, which1, which2);
-  drawHist(canvas, x1, which1, which2);
+  drawInterval(canvas, x1, which1, which2, luma);
+  drawHist(canvas, x1, which1, which2, luma);
   if (luma) {
     lumaw1 = which1;
     lumaw2 = which2;
