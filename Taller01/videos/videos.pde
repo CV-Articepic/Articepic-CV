@@ -20,7 +20,8 @@ float[][] emboss = {{ -2, -1, 0},
 
 void setup() {
   size(1550, 1200);
-  video = new Capture(this, 512,512,30); 
+  printArray(Capture.list());
+  video = new Capture(this,Capture.list()[4]); 
   video.start();
 }
 
@@ -107,6 +108,7 @@ void drawInterval(PImage img, int posX, int which1, int which2, boolean luma) {
     }
   }
   canvas.updatePixels();
+  img = canvas;
   image(canvas, posX, 0);
 }
 
@@ -141,23 +143,28 @@ PImage kernelImage(float[][] mascara, PImage img) {
 }
 
 int mouseCount1 = 0, mouseCount2 = 0, mouseCount3 = 0;
-void mouseClicked() {
+
+void mouseContinuePressed() {
   selectionClickX = mouseX;
   selectionClickY = mouseY;
 
   if ((selectionClickY>0 && selectionClickY<sz)) {
     if ((selectionClickX > 0 && selectionClickX < sz)) {
+      if(mousePressed)
+      {
+        mouseCount1++;
+      }
       switch(mouseCount1) {
       case 0: 
-        mouseCount1++;
+        //mouseCount1++;
         imgCanvas = kernelImage(edgeDetection, video);
         break;
       case 1: 
-        mouseCount1++;
+        //mouseCount1++;
         imgCanvas = kernelImage(sharpen, video);
         break;
       case 2: 
-        mouseCount1++;
+        //mouseCount1++;
         imgCanvas = kernelImage(emboss, video);
         break;
       default:     
@@ -168,17 +175,21 @@ void mouseClicked() {
     }
 
     if ((selectionClickX > sz && selectionClickX < (sz+padding) * 2)) {
+      if(mousePressed)
+      {
+        mouseCount2++;
+      }
       switch(mouseCount2) {
       case 0: 
-        mouseCount2++;
+        //mouseCount2++;
         avgCanvas = kernelImage(edgeDetection, imgAvg);
         break;
       case 1: 
-        mouseCount2++;
+        //mouseCount2++;
         avgCanvas =kernelImage(sharpen, imgAvg);
         break;
       case 2: 
-        mouseCount2++;
+        //mouseCount2++;
         avgCanvas = kernelImage(emboss, imgAvg);
         break;
       default:     
@@ -190,17 +201,21 @@ void mouseClicked() {
     } 
 
     if ((selectionClickX > (sz+padding) * 2 && selectionClickX < sz + (sz+padding) * 2)) {
+       if(mousePressed)
+      {
+        mouseCount3++;
+      }
       switch(mouseCount3) {
       case 0: 
-        mouseCount3++;
+        //mouseCount3++;
         lumaCanvas = kernelImage(edgeDetection, imgLuma);
         break;
       case 1: 
-        mouseCount3++;
+        //mouseCount3++;
         lumaCanvas = kernelImage(sharpen, imgLuma);
         break;
       case 2: 
-        mouseCount3++;
+        //mouseCount3++;
         lumaCanvas = kernelImage(emboss, imgLuma);
         break;
       default:     
@@ -234,6 +249,7 @@ void updateImage(PImage canvas, int x1, int x2, boolean luma) {
 void mousePressed() {
   selectionStartX = mouseX;
   selectionStartY = mouseY;
+  
 }
 
 void mouseReleased() {
@@ -260,7 +276,6 @@ void draw() {
   {
     video.read();
   }
-  img = loadImage("lenna.png");
   imgAvg = createImage(video.width, video.height, RGB);
   imgLuma = createImage(video.width, video.height, RGB);
 
@@ -308,4 +323,5 @@ void draw() {
 
   drawHist(imgAvg, sz+padding, avgw1, avgw2, false);
   drawHist(imgLuma, (sz+padding)*2, lumaw1, lumaw2, true);
+  mouseContinuePressed();
 }
