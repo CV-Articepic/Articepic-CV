@@ -65,8 +65,8 @@ void setup() {
   avgw1 = lumaw1 = 0;
   avgw2 = lumaw2 = 255;
 
-  drawHist(imgAvg, sz+padding, avgw1, avgw2, false);
-  drawHist(imgLuma, (sz+padding)*2, lumaw1, lumaw2, true);
+  drawHist(img, sz+padding, avgw1, avgw2, false);
+  drawHist(img, (sz+padding)*2, lumaw1, lumaw2, true);
 }
 
 
@@ -145,7 +145,7 @@ void drawInterval(PImage img, int posX, int which1, int which2, boolean luma) {
         val = (r + g + b) / 3;
       }
       if (which1 <= val && val <= which2) {
-        canvas.pixels[loc] = img.pixels[loc];
+        canvas.pixels[loc] = color(val);
       } else {
         canvas.pixels[loc] = 0;
       }
