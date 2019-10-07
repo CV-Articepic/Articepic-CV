@@ -8,7 +8,7 @@ class Ball {
   
   void update() {
     if (ballRotation) {
-      y -= speed * 1.5;
+      y -= speed * 2;
       x += speed;
     } else {
       y -= speed; 
@@ -28,11 +28,11 @@ class Ball {
     if (!drawBalls)
       return;
     noStroke();
-    fill(0, 0, 255);
+    fill(20, 0, 155);
     for (int i = 0; i < n; ++i) {
         push();
         translate(x, y);
-        ellipse(0, 0, 8, 8);        
+        ellipse(0, 0, 16, 16);        
         pop();
       }
     }

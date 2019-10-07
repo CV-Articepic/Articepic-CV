@@ -23,7 +23,7 @@ class Squares {
   
   void show() {
     noStroke();
-    fill(255, 255, 0);
+    fill(230, 200, 0);
     float spacing = map(y, height, 0, 0, size * 2);
     if (inverse) {
       spacing = map(y, 0, height, 0, size * 2); 

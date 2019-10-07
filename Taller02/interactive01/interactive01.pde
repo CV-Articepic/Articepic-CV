@@ -64,7 +64,7 @@ void keyPressed() {
 
 void draw() {
   println(ballRotation);
-  background(255);
+  background(160, 10, 20);
   
   for (int i = 0; i < nballs; ++i) {
     balls[i].update();
