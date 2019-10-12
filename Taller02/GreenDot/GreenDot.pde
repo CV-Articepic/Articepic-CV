@@ -33,5 +33,5 @@ noStroke();
      delay(2);
    }
   
-    filter(BLUR,6);
+    filter(BLUR,9);
  }
