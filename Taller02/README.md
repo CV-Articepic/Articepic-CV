@@ -40,6 +40,8 @@ Se desea profundizar sobre Arte Generativo.
 
 Se desea profundizar sobre generacion y modificion de imagenes a partir del sonido.
 
+Se desea profundizar en video juegos.
+
 ## Entrega
 
 * Plazo para hacer _push_ del repositorio a github: ~~6/10/19~~ 14/10/19 a las 24h.
