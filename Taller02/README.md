@@ -34,11 +34,11 @@ Complete la tabla:
 
 2. Describa brevememente las referencias estudiadas y los posibles temas en los que le gustaría profundizar
 
-Se usaron varios recursos del canal The Coding Train sobre processing, por ejemplo: sobre transformaciones, push, pop https://www.youtube.com/watch?v=o9sgjuh-CBM. Varios blogs sobre ilusiones ópticas. 
+Se usaron varios recursos del canal The Coding Train sobre processing, por ejemplo: sobre transformaciones, push, pop https://www.youtube.com/watch?v=o9sgjuh-CBM. Varios blogs sobre ilusiones ópticas.
 
 Se desea profundizar sobre Arte Generativo.
 
-Temas 
+Se desea profundizar sobre generacion y modificion de imagenes a partir del sonido.
 
 ## Entrega
 
