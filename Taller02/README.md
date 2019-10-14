@@ -17,7 +17,7 @@ Complete la tabla:
 | Integrante    | github nick   |
 |---------------|---------------|
 | Nicolas Casas | nmcasasr      |
-|  Miguel Ortiz | miaortizma    |
+| Miguel Ortiz  | miaortizma    |
 
 ## Discusión
 
@@ -25,14 +25,20 @@ Complete la tabla:
 
 | Ilusión | Categoria            | Referencia                                                                 | Tipo de interactividad (si aplica)  | URL código base (si aplica)                 |
 |---------|----------------------|----------------------------------------------------------------------------|-------------------------------------|---------------------------------------------|
-|Stars    |Movimiento/Interactiva|https://moillusions.com/wp-content/uploads/2011/09/super_duper_illusion.gif | Poner el puño en el centro de la App|https://www.youtube.com/watch?v=17WoOqgXsRM |
-| Bounce  |Movimineto/Interactiva|https://www.cibermitanios.com.ar/2015/05/ilusiones-opticas-interactivas.html| Dar Clik para cambiar el color      |                                            |
-|         |                      |                                                                            |                                     |                                            |
-|         |                      |                                                                            |                                     |                                            |
-|         |                      |                                                                            |                                     |                                            |
+|Stars    | Movimiento e Interactiva| https://moillusions.com/wp-content/uploads/2011/09/super_duper_illusion.gif | Poner el puño en el centro de la App|https://www.youtube.com/watch?v=17WoOqgXsRM |
+| Bounce  | Movimiento e Interactiva| https://www.cibermitanios.com.ar/2015/05/ilusiones-opticas-interactivas.html| Dar Clik para cambiar el color      |                                            |
+| Roman   | Ambigua (Geométrica, profundidad) e Interactiva | https://en.wikipedia.org/wiki/Optical_illusion#/media/File:Roman_geometric_mosaic.jpg | Presionar una tecla para generar un gradiente de colores aleatorio |
+| Interactive01 | Ilusión Ambigua (Ilusión de Movimiento) e Interactiva |                                                                             |                                     |                                            |
+| Rotating Cubes (y variation01) | Motion Aftereffect | https://en.wikipedia.org/wiki/Motion_aftereffect  |                     |                   |
 |         |                      |                                                                            |                                     |                                            |
 
 2. Describa brevememente las referencias estudiadas y los posibles temas en los que le gustaría profundizar
+
+Se usaron varios recursos del canal The Coding Train sobre processing, por ejemplo: sobre transformaciones, push, pop https://www.youtube.com/watch?v=o9sgjuh-CBM. Varios blogs sobre ilusiones ópticas. 
+
+Se desea profundizar sobre Arte Generativo.
+
+Temas 
 
 ## Entrega
 

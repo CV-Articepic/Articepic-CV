@@ -32,34 +32,40 @@ float R20 = 0.300 * 255, G20 = 0.360 * 255, B20 = 0.359 * 255;
 float R21 = 0.369 * 255, G21 = 0.385 * 255, B21 = 0.355 * 255;
 
 void keyPressed() {
-  R00 = random(0, 255);
-  R01 = random(0, 255);
+  if (key == 's' || key == 'S') {
+    println("S pressed");
+    saveFrame("roman-###"); 
+  } else {
+    R00 = random(0, 255);
+    R01 = random(0, 255);
+    
+    G00 = random(0, 255);
+    G01 = random(0, 255);
+    
+    B00 = random(0, 255);
+    B01 = random(0, 255);
+    
+    R10 = random(0, 255);
+    R11 = random(0, 255);
+    
+    G10 = random(0, 255);
+    G11 = random(0, 255);
+    
+    B10 = random(0, 255);
+    B11 = random(0, 255);
   
-  G00 = random(0, 255);
-  G01 = random(0, 255);
+    R20 = random(0, 255);
+    R21 = random(0, 255);
+    
+    G20 = random(0, 255);
+    G21 = random(0, 255);
+    
+    B20 = random(0, 255);
+    B21 = random(0, 255);
+    
+    setup();  
+  }
   
-  B00 = random(0, 255);
-  B01 = random(0, 255);
-  
-  R10 = random(0, 255);
-  R11 = random(0, 255);
-  
-  G10 = random(0, 255);
-  G11 = random(0, 255);
-  
-  B10 = random(0, 255);
-  B11 = random(0, 255);
-
-  R20 = random(0, 255);
-  R21 = random(0, 255);
-  
-  G20 = random(0, 255);
-  G21 = random(0, 255);
-  
-  B20 = random(0, 255);
-  B21 = random(0, 255);
-  
-  setup();
 }
 
 
