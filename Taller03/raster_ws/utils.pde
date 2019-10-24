@@ -19,7 +19,23 @@ float[] barycentric(Vector P) {
   float A = l1 + l2 + l3;
   return new float[] {l1 / A, l2 / A, l3 / A};
 }
-
+color aliasing(Vector P, float step, int depth)
+{
+  if(depth == 0)
+  {
+    return barycentricColor(new Vector(P.x() + step/2,P.y() + step/2));
+  }
+  color colors[] = {aliasing(P,step/2,depth-1),
+                    aliasing(new Vector(P.x(), P.y()+step/2),step/2,depth-1),
+                    aliasing(new Vector(P.x()+step/2, P.y()),step/2,depth-1),
+                    aliasing(new Vector(P.x()+step/2, P.y()+step/2),step/2,depth-1)};
+    float r = 0, g = 0, b = 0;
+    for (int i = 0; i <= 3; ++i) {
+    r += red(colors[i]); 
+    g += green(colors[i]); 
+    b += blue(colors[i]);}
+    return color(r/4,g/4,b/4);
+}
 color barycentricColor(Vector P) {
   float[] weights = barycentric(P);
   float r = 0, g = 0, b = 0;

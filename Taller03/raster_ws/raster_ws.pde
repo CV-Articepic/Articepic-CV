@@ -1,4 +1,3 @@
-import nub.timing.*;
 import nub.primitives.*;
 import nub.core.*;
 import nub.processing.*;
@@ -10,6 +9,7 @@ Vector v1, v2, v3;
 // timing
 TimingTask spinningTask;
 boolean yDirection;
+boolean anti = false;
 // scaling is a power of 2
 int n = 4;
 
@@ -50,12 +50,12 @@ void setup() {
   // Press ' ' to play it
   // Press 'y' to change the spinning axes defined in the
   // world system.
-  spinningTask = new TimingTask() {
-    @Override
+  spinningTask = new TimingTask(scene) {
+   @Override
     public void execute() {
-      scene.eye().orbit(scene.is2D() ? new Vector(0, 0, 1) :
-        yDirection ? new Vector(0, 1, 0) : new Vector(1, 0, 0), PI / 100);
-    }
+scene.eye().orbit(scene.is2D() ? new Vector(0, 0, 1) :
+       yDirection ? new Vector(0, 1, 0) : new Vector(1, 0, 0), PI / 100);
+  }
   };
   scene.registerTask(spinningTask);
 
@@ -100,7 +100,15 @@ void triangleRaster() {
         push();
         noStroke();
         Vector v = node.location(P);
-        fill(barycentricColor(P));
+        
+        if(anti)
+        {
+          fill(aliasing(P, step, 4));
+        }else
+        {
+          fill(barycentricColor(P));
+        }
+        
         square(v.x(), v.y(), 1);
         pop();
       }
@@ -177,4 +185,6 @@ void keyPressed() {
       spinningTask.run(20);
   if (key == 'y')
     yDirection = !yDirection;
+   if (key == 'l')
+    anti = !anti;
 }
