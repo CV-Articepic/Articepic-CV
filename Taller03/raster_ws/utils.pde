@@ -12,16 +12,13 @@ boolean inside(Vector P) {
 
 float[] barycentric(Vector P) {
   // abs if Edge functions is Negative
-  float l1 = 1 / 2.0 * abs(E(v1, v2, P));
-  float l2 = 1 / 2.0 * abs(E(v2, v3, P));
-  float l3 = 1 / 2.0 * abs(E(v3, v1, P));
-  float A = l1 + l2 + l3;
-  return new float[] {l1 / A, l2 / A, l3 / A};
+  float l1 = abs(E(v2, v3, P)) / abs(E(v2, v3, v1));
+  float l2 = abs(E(v3, v1, P)) / abs(E(v3, v1, v2));
+  float l3 = abs(E(v1, v2, P)) / abs(E(v1, v2, v3));
+  return new float[] {l1, l2, l3};
 }
-color aliasing(Vector P, float step, int depth)
-{
-  if(depth == 0)
-  {
+color aliasing(Vector P, float step, int depth) {
+  if(depth == 0) {
     return barycentricColor(new Vector(P.x() + step/2,P.y() + step/2));
   }
   color colors[] = {aliasing(P,step/2,depth-1),
@@ -37,11 +34,11 @@ color aliasing(Vector P, float step, int depth)
     b += blue(colors[i]);}
     return color(r/5.0,g/5.0,b/5.0);
 }
+
 color barycentricColor(Vector P) {
   float[] weights = barycentric(P);
   float r = 0, g = 0, b = 0;
-  if(!inside(P))
-  {
+  if(!inside(P)) {
     return color(0);
   }
   // interpolate each channel 

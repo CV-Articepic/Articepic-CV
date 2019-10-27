@@ -18,6 +18,8 @@ boolean triangleHint = true;
 boolean gridHint = true;
 boolean debug = true;
 boolean axesHint = true;
+boolean shadeHint = false;
+
 
 // 3. Use FX2D, JAVA2D, P2D or P3D
 String renderer = P3D;
@@ -63,6 +65,9 @@ scene.eye().orbit(scene.is2D() ? new Vector(0, 0, 1) :
   node.setScaling(width/pow(2, n));
   // init the triangle that's gonna be rasterized
   randomizeTriangle();
+  colors[0] = color(255, 0, 0);
+  colors[1] = color(0, 255, 0);
+  colors[2] = color(0, 0, 255);
 }
 
 void draw() {
@@ -95,23 +100,21 @@ void triangleRaster() {
   for (int i = 0; i < lim; ++i) {
     for (int j = 0; j < lim; ++j) {
       float x = map(i, 0, lim, low, high), y = map(j, 0, lim, low, high);
+      if (shadeHint)
+        continue;
       Vector P = new Vector(x + step / 2, y + step / 2);
-      if (inside(P)) {
-        push();
-        noStroke();
-        Vector v = node.location(P);
-        fill(barycentricColor(P));        
-        square(v.x(), v.y(), 1);
-        pop();
-      }else if(anti)
-      {
-         push();
-        noStroke();
-        Vector v = node.location(P);
+      Vector v = node.location(P);
+       
+      push();
+      noStroke();
+      
+      if (anti)
         fill(aliasing(new Vector(x,y), step, aliLevel));        
-        square(v.x(), v.y(), 1);
-        pop();
-      }
+      else
+        fill(barycentricColor(P));
+        
+      square(v.x(), v.y(), 1);
+      pop();
     }
   }
   if (debug) {
@@ -144,18 +147,41 @@ void randomizeColors() {
 
 void drawTriangleHint() {
   push();
-  noFill();
-  strokeWeight(2);
-  stroke(255, 0, 0);
-  triangle(v1.x(), v1.y(), v2.x(), v2.y(), v3.x(), v3.y());
+
+  if(shadeHint)
+    noStroke();
+  else {
+    strokeWeight(2);
+    noFill();
+  }
+  beginShape(TRIANGLES);
+  if(shadeHint)
+    fill(colors[0]);
+  else
+    stroke(colors[0]);
+  vertex(v1.x(), v1.y());
+  if(shadeHint)
+    fill(colors[1]);
+  else
+    stroke(colors[1]);
+  vertex(v2.x(), v2.y());
+  if(shadeHint)
+    fill(colors[2]);
+  else
+    stroke(colors[2]);
+  vertex(v3.x(), v3.y());
+  endShape();
+
   strokeWeight(5);
-  stroke(0, 255, 255);
+  stroke(colors[0]);
   point(v1.x(), v1.y());
+  stroke(colors[1]);
   point(v2.x(), v2.y());
+  stroke(colors[2]);
   point(v3.x(), v3.y());
+
   pop();
 }
-
 
 void keyPressed() {
   if (key == 'a')
@@ -164,6 +190,8 @@ void keyPressed() {
     gridHint = !gridHint;
   if (key == 't')
     triangleHint = !triangleHint;
+  if (key == 's')
+    shadeHint = !shadeHint;
   if (key == 'd')
     debug = !debug;
   if (key == '+') {
