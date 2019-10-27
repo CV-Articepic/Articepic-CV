@@ -37,7 +37,7 @@ color aliasing(Vector P, float step, int depth)
     b += blue(colors[i]);}
     return color(r/5.0,g/5.0,b/5.0);
 }
-color barycentricColor(Vector P) {
+  color barycentricColor(Vector P) {
   float[] weights = barycentric(P);
   float r = 0, g = 0, b = 0;
   if(!inside(P))
