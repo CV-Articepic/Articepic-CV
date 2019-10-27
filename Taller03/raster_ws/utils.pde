@@ -27,14 +27,15 @@ color aliasing(Vector P, float step, int depth)
   color colors[] = {aliasing(P,step/2,depth-1),
                     aliasing(new Vector(P.x(), P.y()+step/2),step/2,depth-1),
                     aliasing(new Vector(P.x()+step/2, P.y()),step/2,depth-1),
-                    aliasing(new Vector(P.x()+step/2, P.y()+step/2),step/2,depth-1)
+                    aliasing(new Vector(P.x()+step/2, P.y()+step/2),step/2,depth-1),
+                    barycentricColor(new Vector(P.x() + step/2,P.y() + step/2))
                   };
     float r = 0, g = 0, b = 0;
-    for (int i = 0; i <= 3; ++i) {
+    for (int i = 0; i <= 4; ++i) {
     r += red(colors[i]); 
     g += green(colors[i]); 
     b += blue(colors[i]);}
-    return color(r/4.0,g/4.0,b/4.0);
+    return color(r/5.0,g/5.0,b/5.0);
 }
 color barycentricColor(Vector P) {
   float[] weights = barycentric(P);

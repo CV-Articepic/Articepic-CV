@@ -32,6 +32,8 @@ Complete la tabla:
 
 Describa los resultados obtenidos. En el caso de anti-aliasing describir las t�cnicas exploradas, citando las referencias.
 
+
+
 ## Entrega
 
 * Plazo: ~~20/10/19~~ 27/10/19 a las 24h.
