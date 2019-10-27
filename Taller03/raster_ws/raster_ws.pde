@@ -12,7 +12,7 @@ boolean yDirection;
 boolean anti = false;
 // scaling is a power of 2
 int n = 4;
-
+int aliLevel = 1;
 // 2. Hints
 boolean triangleHint = true;
 boolean gridHint = true;
@@ -66,7 +66,7 @@ scene.eye().orbit(scene.is2D() ? new Vector(0, 0, 1) :
 }
 
 void draw() {
-  println(frameRate);
+  //println(frameRate);
   background(0);
   stroke(0, 255, 0);
   if (gridHint)
@@ -108,7 +108,7 @@ void triangleRaster() {
          push();
         noStroke();
         Vector v = node.location(P);
-        fill(aliasing(new Vector(x,y), step, 1));        
+        fill(aliasing(new Vector(x,y), step, aliLevel));        
         square(v.x(), v.y(), 1);
         pop();
       }
@@ -169,6 +169,14 @@ void keyPressed() {
   if (key == '+') {
     n = n < 7 ? n+1 : 2;
     node.setScaling(width/pow( 2, n));
+  }
+  if (key == 'p') {
+    aliLevel = aliLevel < 6 ? aliLevel+1 : 0;
+    print(aliLevel);
+  }
+  if (key == 'n') {
+    aliLevel = aliLevel > 0 ? aliLevel-1 : 5;
+    print(aliLevel);
   }
   if (key == '-') {
     n = n >2 ? n-1 : 7;
