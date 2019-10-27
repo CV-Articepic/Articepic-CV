@@ -33,12 +33,13 @@ Complete la tabla:
 Describa los resultados obtenidos. En el caso de anti-aliasing describir las técnicas exploradas, citando las referencias.
 
 Para este proyecto se creo un archivo llamado util con todas las funciones necesarias para el funcionamiento del mismo:
-* La funcion E, es una edge function para determianar la ortientacion de un vector P, respecto a la linea trazada por un vector V1 y un vector V2.
-* La funcion inside se encarga de decir si el vector P esta dentro del triangulo o no, tomando
-encuenta los valores de la funcion E(egde function).
-* La funcion barycentric, retorna el peso del color que se tiene en un punto dado, es decir, define la transicion entre los colores asociados
-a los vertices del triangulo.
-* La funcion barycentricColor retorna que color que debe tener el pixel asociado a vector P, usando los pesos retornados por la funcion barycentric y los colores asociados a los vertices del triangulo.
+* La función E, es una edge function para determinar la orientación de un vector P, es decir, es el signed area del triangulo formado por v0, v1 y P.
+* La función inside revisa que todas las edge function para un vértice P  tienen el mismo signo ( <= 0 o >= 0).
+* La función barycentric, retorna los pesos baricentricos para un punto p, calcula los pesos haciendo uso de la función E.
+* La función barycentricColor retorna que color que debe tener el pixel asociado a vector P, utilizando los pesos de barycentric para interpolar el color.
+Aparte de esto se modificó triangleRaster() para hacer un fill de los pixeles al interior del triángulo, usando las funciones definidas en util.
+
+Para la parte de anti-aliasing se usó la bibliografía aportada por el profesor, donde se describia que para el proceso se debía dividir el pixel que esta afuera del triángulo en subpixeles, determinar el color baricéntrico de  los subpixeles que si se encontraban dentro del triángulo, sacar un promedio del color baricéntrico obtenido y llenar el pixel con ese color, eso fue lo que se hizo en el código, pero se uso una funcion recursiva para dividir esos subpixeles a su vez en otros subpixeles y aumentar el nivel de anti-aliasing.
 
 
 
