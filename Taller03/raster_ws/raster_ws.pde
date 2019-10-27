@@ -100,15 +100,15 @@ void triangleRaster() {
         push();
         noStroke();
         Vector v = node.location(P);
-        
-        if(anti)
-        {
-          fill(aliasing(P, step, 4));
-        }else
-        {
-          fill(barycentricColor(P));
-        }
-        
+        fill(barycentricColor(P));        
+        square(v.x(), v.y(), 1);
+        pop();
+      }else if(anti)
+      {
+         push();
+        noStroke();
+        Vector v = node.location(P);
+        fill(aliasing(new Vector(x,y), step, 1));        
         square(v.x(), v.y(), 1);
         pop();
       }

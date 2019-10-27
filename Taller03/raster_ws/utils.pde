@@ -4,7 +4,6 @@
 float E(Vector v0, Vector v1, Vector P) { 
   return (P.x() - v0.x()) * (v1.y() - v0.y()) - (P.y() - v0.y()) * (v1.x() - v0.x()); 
 }
-
 boolean inside(Vector P) {
   float[] sides = {E(v1, v2, P), E(v2, v3, P), E(v3, v1, P)};
   // checks if all edge functions are either negative or positive.
@@ -28,17 +27,22 @@ color aliasing(Vector P, float step, int depth)
   color colors[] = {aliasing(P,step/2,depth-1),
                     aliasing(new Vector(P.x(), P.y()+step/2),step/2,depth-1),
                     aliasing(new Vector(P.x()+step/2, P.y()),step/2,depth-1),
-                    aliasing(new Vector(P.x()+step/2, P.y()+step/2),step/2,depth-1)};
+                    aliasing(new Vector(P.x()+step/2, P.y()+step/2),step/2,depth-1)
+                  };
     float r = 0, g = 0, b = 0;
     for (int i = 0; i <= 3; ++i) {
     r += red(colors[i]); 
     g += green(colors[i]); 
     b += blue(colors[i]);}
-    return color(r/4,g/4,b/4);
+    return color(r/6,g/6,b/6);
 }
 color barycentricColor(Vector P) {
   float[] weights = barycentric(P);
   float r = 0, g = 0, b = 0;
+  if(!inside(P))
+  {
+    return color(0);
+  }
   // interpolate each channel 
   for (int i = 0; i < 3; ++i) {
     r += weights[i] * red(colors[i]); 
