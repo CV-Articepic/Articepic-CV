@@ -41,8 +41,22 @@ Aparte de esto se modificó triangleRaster() para hacer un fill de los pixeles a
 
 Para la parte de anti-aliasing se usó la bibliografía aportada por el profesor, donde se describia que para el proceso se debía dividir el pixel que esta afuera del triángulo en subpixeles, determinar el color baricéntrico de  los subpixeles que si se encontraban dentro del triángulo, sacar un promedio del color baricéntrico obtenido y llenar el pixel con ese color, eso fue lo que se hizo en el código, pero se uso una funcion recursiva para dividir esos subpixeles a su vez en otros subpixeles y aumentar el nivel de anti-aliasing.
 
-
-
+| Tecla | Interacion |
+|------------|-------------|
+| A |Activar las guias de los ejes |
+|G | Activar la guia de la grilla |
+|  T |Activar la guia del triangulo  |
+| S |Activar el render por hardware |
+|  D |Activar el "debug" |
+|  + |Aumentar el numero de pixeles |
+|  - |Disminuir el numero de pixeles |
+|   P|Aumentar el nivel de anti-aliasing |
+|   N|Disminuir el nivel de anti-aliasing |
+|   R|Crear un triangulo aleatorio |
+|   C| llenar el triangulo de colores aleatorios|
+|  Space |Hacer girar el triangulo |
+|   Y|Cambiar la orientación de giro del triangulo |
+|   L|Activar o desactivar el anti-aliasing |
 ## Entrega
 
 * Plazo: ~~20/10/19~~ 27/10/19 a las 24h.
