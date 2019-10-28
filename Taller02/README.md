@@ -28,7 +28,7 @@ Complete la tabla:
 |Stars    | Movimiento e Interactiva| https://moillusions.com/wp-content/uploads/2011/09/super_duper_illusion.gif | Poner el puño en el centro de la App|https://www.youtube.com/watch?v=17WoOqgXsRM |
 | Bounce  | Movimiento e Interactiva| https://www.cibermitanios.com.ar/2015/05/ilusiones-opticas-interactivas.html| Dar Clik para cambiar el color      |                                            |
 | Roman   | Ambigua (Geométrica, profundidad) e Interactiva | https://en.wikipedia.org/wiki/Optical_illusion#/media/File:Roman_geometric_mosaic.jpg | Presionar una tecla para generar un gradiente de colores aleatorio |
-| Interactive01 | Ilusión Ambigua (Ilusión de Movimiento) e Interactiva |  https://www.youtube.com/watch?v=xSZvm0wLDII                                                                           |                                     |                                            |
+| Interactive01 | Ilusión Ambigua (Ilusión de Movimiento) e Interactiva |  https://www.youtube.com/watch?v=xSZvm0wLDII | Click para cambiar movimiento, Presionar tecla para mostrar/esconder bolas azules        |                                            |
 | Rotating Cubes (y variation01) | Motion Aftereffect | https://en.wikipedia.org/wiki/Motion_aftereffect  |                     |                   |
 |Green ball |Monvimiento color     |https://verne.elpais.com/verne/2016/01/27/articulo/1453897011_477533.html   |                                     |                                             |
 
